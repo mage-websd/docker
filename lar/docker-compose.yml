@@ -1,0 +1,14 @@
+version: '2'
+services:
+  exampleservice:
+#    image: giangsoda/lear:py2
+    environment:
+      - bootstrap.memory_lock=true
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8181"
+    volumes:
+      - ./:/app
+    privileged: true
