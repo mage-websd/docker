@@ -10,5 +10,5 @@ services:
     ports:
       - "8080:8181"
     volumes:
-      - ./:/app
+      - ./:/a2
     privileged: true

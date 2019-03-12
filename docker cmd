@@ -3,4 +3,10 @@ docker run nameContainer
 docker build --tag=imageName /path/to/folder
 docker run -p 4000:80 imageName
 docker exec -it ContainerID /bin/bash
-la1
+
+docker-compose up
+
+docker rmi $(docker images -a -q) // rm all image
+docker rm $(docker ps -a -f status=exited -q) // rm all container
+
+ 
