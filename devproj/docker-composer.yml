@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    build: "distfiles/proxy"
+    networks:
+      - link
+    ports:
+      - 8080:80
+  php:
+    build: ./
+    volumes:
+      - ./php-app:/var/www/html
+#    links:
+#      - database
+#      - redis
+    networks:
+      - link
+  database:
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=password"
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - link
+
+  redis:
+    image: redis:4.0
+    ports:
+      - "6378:6379"
+    networks:
+      - link
+
+networks:
+  link:
+    driver: bridge
+
+#  links:
+#    - database
+#    - redis
+
+
+# マウント出来ないため不採用
+#volumes:
+#  laravel-sync:
+#    external: true
