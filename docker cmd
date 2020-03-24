@@ -8,5 +8,5 @@ docker-compose up
 
 docker rmi $(docker images -a -q) // rm all image
 docker rm $(docker ps -a -f status=exited -q) // rm all container
-
+docker stop $(docker ps -a -q) // stop all container
  

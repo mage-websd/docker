@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  php:
+    build: ./
+    volumes:
+      - ./code:/app/code
+    command: php -S 0:8080
+    ports:
+      - 8080:8080
+    networks:
+      - mysql_link
+networks:
+  mysql_link:
+    external:
+      name: mysql_link
