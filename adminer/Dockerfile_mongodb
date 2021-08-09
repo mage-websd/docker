@@ -1,0 +1,8 @@
+FROM adminer
+USER root
+RUN apk update && \
+    apk add autoconf && \
+    apk --update add gcc make g++ zlib-dev && \
+    apk add curl-dev openssl-dev
+
+RUN pecl install mongodb && docker-php-ext-enable mongodb
