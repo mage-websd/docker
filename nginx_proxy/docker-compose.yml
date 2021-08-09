@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  nginx_proxy_yenbai:
+    build:
+      context: ./nginx
+      dockerfile: ./prod/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/data:/var/www/certbot
