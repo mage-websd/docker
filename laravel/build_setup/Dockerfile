@@ -1,4 +1,4 @@
-FROM php:8.0.2-fpm
+FROM php:8.0.10-fpm
 
 ARG nginx_folder=build_setup/nginx_proxy/nginx/
 ARG php_folder=build_setup/php/
@@ -9,7 +9,7 @@ RUN mkdir -p /app/run/
 WORKDIR /app/code/
 
 # Install dependencies
-RUN apt update && apt install -y \
+RUN apt update -y && apt install -y \
     build-essential \
     libpng-dev \
     libonig-dev \
@@ -25,7 +25,8 @@ RUN apt update && apt install -y \
     zip \
     unzip\
     autoconf \
-    zlib1g-dev
+    zlib1g-dev \
+    g++
 
 RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd
 RUN pecl install grpc && docker-php-ext-enable grpc
