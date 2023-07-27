@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  xdebug:
+    container_name: xdebug
+    build:
+      context: ../../
+      dockerfile: ./docker/php/xdebug-Dockerfile
+    tty: true
+    volumes:
+      - ../../:/code
+    networks:
+      - laravel_network
+    ports:
+      - "80:80"
+
+networks:
+  laravel_network:
+    external: true
