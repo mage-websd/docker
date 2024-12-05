@@ -1,0 +1,16 @@
+Host remote_jump_host
+    HostName ec2-13-230-89-2.ap-northeast-1.compute.amazonaws.com
+    User ec2-user
+    IdentityFile /app/pem/server.pem
+
+Host remote_fe
+    HostName 10.10.10.10
+    User ec2-user
+    IdentityFile /app/pem/server.pem
+    ProxyJump remote_jump_host
+
+Host remote_be
+    HostName 10.10.10.11
+    User ec2-user
+    IdentityFile /app/pem/server.pem
+    ProxyJump remote_jump_host

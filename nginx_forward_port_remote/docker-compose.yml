@@ -1,0 +1,17 @@
+services:
+  remote_nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: remote_nginx
+    image: remote_nginx
+    restart: on-failure:5
+    ports:
+      - 80:80
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '50m'
+    volumes:
+      - ./pem:/app/pem
+      - ./ssh_config:/root/.ssh/config
